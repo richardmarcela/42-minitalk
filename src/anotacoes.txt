@@ -28,3 +28,5 @@ usleep(useconds_t useconds) -> suspende a execução da thread por um numero esp
 exit(int status) -> finaliza o programa
 
 getpid() -> pega o id do processo que chama a função
+
+signal() -> 
