@@ -6,7 +6,7 @@
 /*   By: mrichard <mrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:43:59 by marcela           #+#    #+#             */
-/*   Updated: 2022/12/05 21:47:45 by mrichard         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:14:29 by mrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,18 @@ void	handler_signal(int sig)
 		ft_printf("Signal %d coming out!\n", sig);
 }
 
+void	sigaction_setup(struct sigaction *act, siginfo_t *siginfo, char *pid)
+{
+	act->sa_flags = SA_SINFO;
+	act->sa_sigaction = &handler;
+}
+
 int	main(int argc, char **argv)
 {
 	ft_errors_in_main(argc, argv);
-	ft_printf("\nClient PID: %d\n", getpid());
-	
+	while (1)
+	{
+		ft_printf("\nClient PID: %d\n", getpid());
+		sleep(1);
+	}
 }

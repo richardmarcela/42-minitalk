@@ -30,3 +30,5 @@ exit(int status) -> finaliza o programa
 getpid() -> pega o id do processo que chama a função
 
 signal() -> 
+
+SIGINFO -> usada quando se estabelece um handler de sinal. 

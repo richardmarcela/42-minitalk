@@ -6,7 +6,7 @@
 /*   By: mrichard <mrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:44:14 by marcela           #+#    #+#             */
-/*   Updated: 2022/12/05 21:40:44 by mrichard         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:03:10 by mrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINITALK_H
 
 # include <signal.h>
+# include <errno.h>
 # include "../libft/libft.h"
 
 #endif
