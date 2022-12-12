@@ -6,7 +6,7 @@
 /*   By: mrichard <mrichard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:49:28 by marcela           #+#    #+#             */
-/*   Updated: 2022/12/04 18:41:22 by mrichard         ###   ########.fr       */
+/*   Updated: 2022/12/10 23:49:20 by mrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 char	*ft_free_join(char *s, char *buffer)
 {
-	size_t	i;
-	size_t	j;
+	size_t	index[2];
 	char	*str;
 	int		tot;
 
@@ -30,16 +29,16 @@ char	*ft_free_join(char *s, char *buffer)
 	str = malloc(sizeof(char) * (tot + 1));
 	if (str == NULL)
 		return (NULL);
-	i = -1;
-	j = 0;
+	index[0] = -1;
+	index[1] = 0;
 	if (s)
-		while (s[++i] != '\0')
-			str[i] = s[i];
-	while (buffer[j] != '\0')
-		str[i++] = buffer[j++];
+		while (s[++index[0]] != '\0')
+			str[index[0]] = s[index[0]];
+	while (buffer[index[1]] != '\0')
+		str[index[0]++] = buffer[index[1]++];
 	str[tot] = '\0';
-	free(s);
-	return(str);
+	free (s);
+	return (str);
 }
 
 char	*ft_get_line(char *s)
