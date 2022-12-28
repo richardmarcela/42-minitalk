@@ -1,0 +1,37 @@
+signal sets -> objetos de dados que permitem um processo manter o controle sobre um grupo de sinais
+
+sigemptyset(sigset_t *set) -> inicializa o sinal set apontado por set para vazio, com todos os sinais excluidos do set
+
+sigaddset(sigset_t *set, int signal) -> adiciona um sinal ao grupo de sinais ja gravados em set
+    - retorna 0 se o sinal foi adicionado com sucesso
+    - retorna -1 e set errno para EINVAL se o sinal não for suportado
+
+sigaction(int sig, const struct signaction *__restrict__ new, struct sigaction *__restrict__ old) -> examina e muda a ação associada a um sinal especifico
+    - sig -> numero do sinal
+    - const struct sigaction *new -> se NULL, a função determina a ação atualmente definida para lidar com sig
+    - struct sigaction *old -> aponta para o local na memória onde a função pode armazenar uma sigaction struct
+
+kill(pid_t pid, int sig) -> mando um sinal para um projeto, 
+    - pid_t pid -> especifica o processo que o caller quer mandar o sinal
+    - pid > 0 -> kill() manda o seu sinal para o processo onde o id é igual ao pid
+    - pid == 0 -> kill() manda o seu sinal para todos os processos que possuam um id de grupo igual ao do sender, exceto se o sender não tiver os privilégios apropriados
+    - pid == -1 -> kill() retorna -1
+    - sig -> o sinal que deve ser enviado para o processo especificado por pid
+    - sig -> deve ser 0 ou um dos números dos sinais definidos no header file signal.header
+
+pause(void) -> suspende a execução da thread atual
+
+sleep(unsigned int seconds) -> suspende a execução da thread por um número especifico de segundos
+
+usleep(useconds_t useconds) -> suspende a execução da thread por um numero especifico de microsegundos especificado por useconds
+
+exit(int status) -> finaliza o programa
+
+getpid() -> pega o id do processo que chama a função
+
+SIGINFO -> usada quando se estabelece um handler de sinal.
+
+OBS.: -> um handler para um sinal pode ser definido utilizando sigaction() ou signal(), preferencialmente a primeira opcao, considerando que signal() nao bloqueia 
+outros sinais, e tambem reseta a acao do sinal de volta para SIG_SFL (default) para quase todos os sinais, o que significa que signal() handler deve reinstalar a 
+si propria como primeira acao. Tambem abre uma janela de vulnerabilidade entre o tempo que o sinal e detectado e o handler ser reinstalado, sendo que se uma segunda 
+instancia do sinal chega, o comportamento padrao (normalmente termina, as vezes com prejuizo como core dumps) ocorre.
