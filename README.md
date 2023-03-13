@@ -10,7 +10,7 @@ This is a 42 project. The purpose is to create a data exchange between server an
   
 ### 2 - Go to Minitalk and run <b>make</b>
 
-    cd Minitalk/
+    cd 42-minitalk/
     make
         
 ### 3 - Run server to get its PID and use it on client side to send the message you want. 
